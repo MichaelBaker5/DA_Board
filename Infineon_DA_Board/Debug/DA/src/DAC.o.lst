@@ -1,0 +1,268 @@
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"DAC.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.U0C0_SSC_vSendData,"ax",%progbits
+  18              		.align	2
+  19              		.code	16
+  20              		.thumb_func
+  22              	U0C0_SSC_vSendData:
+  23              	.LFB33:
+  24              		.file 1 "../DA/src/DAC.c"
+   1:../DA/src/DAC.c **** /*
+   2:../DA/src/DAC.c ****  * DAC.c
+   3:../DA/src/DAC.c ****  *
+   4:../DA/src/DAC.c ****  *  Created on: Mar 6, 2015
+   5:../DA/src/DAC.c ****  *      Author: Mikew
+   6:../DA/src/DAC.c ****  */
+   7:../DA/src/DAC.c **** 
+   8:../DA/src/DAC.c **** #include "../inc/DAC.h"
+   9:../DA/src/DAC.c **** 
+  10:../DA/src/DAC.c **** static bool U0C0_SSC_vSendData(uint16_t Data) // 不需要更改传入的参数,使用传入变量�
+  11:../DA/src/DAC.c **** {
+  25              		.loc 1 11 0
+  26              		.cfi_startproc
+  27 0000 90B5     		push	{r4, r7, lr}
+  28              	.LCFI0:
+  29              		.cfi_def_cfa_offset 12
+  30              		.cfi_offset 4, -12
+  31              		.cfi_offset 7, -8
+  32              		.cfi_offset 14, -4
+  33 0002 85B0     		sub	sp, sp, #20
+  34              	.LCFI1:
+  35              		.cfi_def_cfa_offset 32
+  36 0004 00AF     		add	r7, sp, #0
+  37              	.LCFI2:
+  38              		.cfi_def_cfa_register 7
+  39 0006 021C     		mov	r2, r0
+  40 0008 BB1D     		add	r3, r7, #6
+  41 000a 1A80     		strh	r2, [r3]
+  12:../DA/src/DAC.c **** 	bool Result = FALSE;
+  42              		.loc 1 12 0
+  43 000c 3B1C     		mov	r3, r7
+  44 000e 0F33     		add	r3, r3, #15
+  45 0010 0022     		mov	r2, #0
+  46 0012 1A70     		strb	r2, [r3]
+  13:../DA/src/DAC.c **** 	Result = SPI001_WriteData(&SPI001_Handle0, &Data, SPI001_STANDARD);
+  47              		.loc 1 13 0
+  48 0014 3C1C     		mov	r4, r7
+  49 0016 0F34     		add	r4, r4, #15
+  50 0018 074A     		ldr	r2, .L3
+  51 001a BB1D     		add	r3, r7, #6
+  52 001c 101C     		mov	r0, r2
+  53 001e 191C     		mov	r1, r3
+  54 0020 0022     		mov	r2, #0
+  55 0022 FFF7FEFF 		bl	SPI001_WriteData
+  56 0026 031C     		mov	r3, r0
+  57 0028 2370     		strb	r3, [r4]
+  14:../DA/src/DAC.c **** 	return Result;
+  58              		.loc 1 14 0
+  59 002a 3B1C     		mov	r3, r7
+  60 002c 0F33     		add	r3, r3, #15
+  61 002e 1B78     		ldrb	r3, [r3]
+  15:../DA/src/DAC.c **** }
+  62              		.loc 1 15 0
+  63 0030 181C     		mov	r0, r3
+  64 0032 BD46     		mov	sp, r7
+  65 0034 05B0     		add	sp, sp, #20
+  66              		@ sp needed for prologue
+  67 0036 90BD     		pop	{r4, r7, pc}
+  68              	.L4:
+  69              		.align	2
+  70              	.L3:
+  71 0038 00000000 		.word	SPI001_Handle0
+  72              		.cfi_endproc
+  73              	.LFE33:
+  75              		.section	.text.DAOutputs,"ax",%progbits
+  76              		.align	2
+  77              		.global	DAOutputs
+  78              		.code	16
+  79              		.thumb_func
+  81              	DAOutputs:
+  82              	.LFB34:
+  16:../DA/src/DAC.c **** bool DAOutputs(uint16_t *Data,uint16_t Num)
+  17:../DA/src/DAC.c **** {
+  83              		.loc 1 17 0
+  84              		.cfi_startproc
+  85 0000 90B5     		push	{r4, r7, lr}
+  86              	.LCFI3:
+  87              		.cfi_def_cfa_offset 12
+  88              		.cfi_offset 4, -12
+  89              		.cfi_offset 7, -8
+  90              		.cfi_offset 14, -4
+  91 0002 89B0     		sub	sp, sp, #36
+  92              	.LCFI4:
+  93              		.cfi_def_cfa_offset 48
+  94 0004 00AF     		add	r7, sp, #0
+  95              	.LCFI5:
+  96              		.cfi_def_cfa_register 7
+  97 0006 7860     		str	r0, [r7, #4]
+  98 0008 0A1C     		mov	r2, r1
+  99 000a BB1C     		add	r3, r7, #2
+ 100 000c 1A80     		strh	r2, [r3]
+  18:../DA/src/DAC.c **** 	bool Result = FALSE;
+ 101              		.loc 1 18 0
+ 102 000e 3B1C     		mov	r3, r7
+ 103 0010 1F33     		add	r3, r3, #31
+ 104 0012 0022     		mov	r2, #0
+ 105 0014 1A70     		strb	r2, [r3]
+  19:../DA/src/DAC.c ****     uint16_t channel, DAFIFO[8];
+  20:../DA/src/DAC.c **** 
+  21:../DA/src/DAC.c ****     for (channel=0;channel<Num;channel++)
+ 106              		.loc 1 21 0
+ 107 0016 3B1C     		mov	r3, r7
+ 108 0018 1C33     		add	r3, r3, #28
+ 109 001a 0022     		mov	r2, #0
+ 110 001c 1A80     		strh	r2, [r3]
+ 111 001e 37E0     		b	.L6
+ 112              	.L9:
+  22:../DA/src/DAC.c ****     {
+  23:../DA/src/DAC.c ****            DAFIFO[channel] = (channel<<12)|(((Data[channel]+0x8000)>>4)&0x0FFF);//
+ 113              		.loc 1 23 0
+ 114 0020 3B1C     		mov	r3, r7
+ 115 0022 1C33     		add	r3, r3, #28
+ 116 0024 1A88     		ldrh	r2, [r3]
+ 117 0026 3B1C     		mov	r3, r7
+ 118 0028 1C33     		add	r3, r3, #28
+ 119 002a 1B88     		ldrh	r3, [r3]
+ 120 002c 1B03     		lsl	r3, r3, #12
+ 121 002e 99B2     		uxth	r1, r3
+ 122 0030 3B1C     		mov	r3, r7
+ 123 0032 1C33     		add	r3, r3, #28
+ 124 0034 1B88     		ldrh	r3, [r3]
+ 125 0036 5B00     		lsl	r3, r3, #1
+ 126 0038 7868     		ldr	r0, [r7, #4]
+ 127 003a C318     		add	r3, r0, r3
+ 128 003c 1B88     		ldrh	r3, [r3]
+ 129 003e 8020     		mov	r0, #128
+ 130 0040 0002     		lsl	r0, r0, #8
+ 131 0042 1B18     		add	r3, r3, r0
+ 132 0044 1B11     		asr	r3, r3, #4
+ 133 0046 9BB2     		uxth	r3, r3
+ 134 0048 1B05     		lsl	r3, r3, #20
+ 135 004a 1B0D     		lsr	r3, r3, #20
+ 136 004c 9BB2     		uxth	r3, r3
+ 137 004e 0B43     		orr	r3, r1
+ 138 0050 9BB2     		uxth	r3, r3
+ 139 0052 99B2     		uxth	r1, r3
+ 140 0054 3B1C     		mov	r3, r7
+ 141 0056 0C33     		add	r3, r3, #12
+ 142 0058 5200     		lsl	r2, r2, #1
+ 143 005a D152     		strh	r1, [r2, r3]
+  24:../DA/src/DAC.c ****            Result = U0C0_SSC_vSendData(DAFIFO[channel]);
+ 144              		.loc 1 24 0
+ 145 005c 3B1C     		mov	r3, r7
+ 146 005e 1C33     		add	r3, r3, #28
+ 147 0060 1A88     		ldrh	r2, [r3]
+ 148 0062 3B1C     		mov	r3, r7
+ 149 0064 0C33     		add	r3, r3, #12
+ 150 0066 5200     		lsl	r2, r2, #1
+ 151 0068 D35A     		ldrh	r3, [r2, r3]
+ 152 006a 3C1C     		mov	r4, r7
+ 153 006c 1F34     		add	r4, r4, #31
+ 154 006e 181C     		mov	r0, r3
+ 155 0070 FFF7FEFF 		bl	U0C0_SSC_vSendData
+ 156 0074 031C     		mov	r3, r0
+ 157 0076 2370     		strb	r3, [r4]
+  25:../DA/src/DAC.c ****            if(!Result)
+ 158              		.loc 1 25 0
+ 159 0078 3B1C     		mov	r3, r7
+ 160 007a 1F33     		add	r3, r3, #31
+ 161 007c 1B78     		ldrb	r3, [r3]
+ 162 007e 002B     		cmp	r3, #0
+ 163 0080 0ED0     		beq	.L11
+ 164              	.L7:
+  21:../DA/src/DAC.c ****     for (channel=0;channel<Num;channel++)
+ 165              		.loc 1 21 0
+ 166 0082 3B1C     		mov	r3, r7
+ 167 0084 1C33     		add	r3, r3, #28
+ 168 0086 3A1C     		mov	r2, r7
+ 169 0088 1C32     		add	r2, r2, #28
+ 170 008a 1288     		ldrh	r2, [r2]
+ 171 008c 0132     		add	r2, r2, #1
+ 172 008e 1A80     		strh	r2, [r3]
+ 173              	.L6:
+  21:../DA/src/DAC.c ****     for (channel=0;channel<Num;channel++)
+ 174              		.loc 1 21 0 is_stmt 0 discriminator 1
+ 175 0090 3A1C     		mov	r2, r7
+ 176 0092 1C32     		add	r2, r2, #28
+ 177 0094 BB1C     		add	r3, r7, #2
+ 178 0096 1288     		ldrh	r2, [r2]
+ 179 0098 1B88     		ldrh	r3, [r3]
+ 180 009a 9A42     		cmp	r2, r3
+ 181 009c C0D3     		bcc	.L9
+ 182 009e 00E0     		b	.L8
+ 183              	.L11:
+  26:../DA/src/DAC.c ****            {
+  27:../DA/src/DAC.c ****         	   break;
+ 184              		.loc 1 27 0 is_stmt 1
+ 185 00a0 C046     		mov	r8, r8
+ 186              	.L8:
+  28:../DA/src/DAC.c ****            }
+  29:../DA/src/DAC.c ****     }
+  30:../DA/src/DAC.c ****     return Result;
+ 187              		.loc 1 30 0
+ 188 00a2 3B1C     		mov	r3, r7
+ 189 00a4 1F33     		add	r3, r3, #31
+ 190 00a6 1B78     		ldrb	r3, [r3]
+  31:../DA/src/DAC.c **** }
+ 191              		.loc 1 31 0
+ 192 00a8 181C     		mov	r0, r3
+ 193 00aa BD46     		mov	sp, r7
+ 194 00ac 09B0     		add	sp, sp, #36
+ 195              		@ sp needed for prologue
+ 196 00ae 90BD     		pop	{r4, r7, pc}
+ 197              		.cfi_endproc
+ 198              	.LFE34:
+ 200              		.text
+ 201              	.Letext0:
+ 202              		.file 2 "d:\\dave-3.1.10\\arm-gcc\\bin\\../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/i
+ 203              		.file 3 "D:\\DAVE-3.1.10\\eclipse\\/../CMSIS/Infineon/XMC1300_series/Include/XMC1300.h"
+ 204              		.file 4 "D:\\DAVE3_workspace\\ws3.1.10\\Infineon_DA_Board\\Dave\\Generated\\inc\\DAVESupport/../..
+ 205              		.file 5 "D:\\DAVE3_workspace\\ws3.1.10\\Infineon_DA_Board\\Dave\\Generated\\inc\\DAVESupport/../..
+ 206              		.file 6 "D:\\DAVE3_workspace\\ws3.1.10\\Infineon_DA_Board\\Dave\\Generated\\inc\\DAVESupport/../..
+DEFINED SYMBOLS
+                            *ABS*:00000000 DAC.c
+C:\Users\Mikew\AppData\Local\Temp\ccAtHkNS.s:18     .text.U0C0_SSC_vSendData:00000000 $t
+C:\Users\Mikew\AppData\Local\Temp\ccAtHkNS.s:22     .text.U0C0_SSC_vSendData:00000000 U0C0_SSC_vSendData
+C:\Users\Mikew\AppData\Local\Temp\ccAtHkNS.s:71     .text.U0C0_SSC_vSendData:00000038 $d
+C:\Users\Mikew\AppData\Local\Temp\ccAtHkNS.s:76     .text.DAOutputs:00000000 $t
+C:\Users\Mikew\AppData\Local\Temp\ccAtHkNS.s:81     .text.DAOutputs:00000000 DAOutputs
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.c67c26e5b5bc773b816ae3f1dbc84429
+                           .group:00000000 wm4.XMC1300.h.45.4ee692c6c98aa9fc42e2abbc732052b9
+                           .group:00000000 wm4.core_cm0.h.47.022e66414e77714da7c4b30b3ad99fe8
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.39.b7b6650bdd2316848d940915272d75b8
+                           .group:00000000 wm4.core_cm0.h.135.ca70469f87e143609670bb393bfa6518
+                           .group:00000000 wm4.XMC1000_RomFunctionTable.h.31.6d9a94465618f31b040dc9cea9a47ad7
+                           .group:00000000 wm4.XMC1300.h.126.871a37eeeb3f6a078f5ddf5efd64103f
+                           .group:00000000 wm4.stddef.h.40.50cf36416e06376af8a9dca28536f2e4
+                           .group:00000000 wm4.types.h.60.e75c47576398c648cdcf9000ace5e3d8
+                           .group:00000000 wm4.MULTIPLEXER.h.46.383e3edbb9cbf6e538f7c1532ef623c1
+                           .group:00000000 wm4.CCU8PWMLIB.h.74.725ec81203769525cc7a424597055f47
+                           .group:00000000 wm4.MOTORLIB.h.62.1aa717522e337383e1234be386036b7c
+                           .group:00000000 wm4.IO004.h.53.442ea5eb47ad9eedc675253aa35f3107
+                           .group:00000000 wm4.CLK002.h.56.d2936f957892acc36e594c5138aee657
+                           .group:00000000 wm4.SPI001.h.66.008f87dc8e35bd406e3c30cddbc0095a
+                           .group:00000000 wm4.SPI001_Conf.h.73.c5c12193b8e80575950f823e6fd0c682
+
+UNDEFINED SYMBOLS
+SPI001_WriteData
+SPI001_Handle0
