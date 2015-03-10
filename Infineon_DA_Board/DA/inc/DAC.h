@@ -11,5 +11,5 @@
 #include <DAVE3.h>
 
 bool DAOutputs(uint16_t *Data,uint16_t Num);
-static bool U0C0_SSC_vSendData(uint16_t Data);
+bool U0C0_SSC_vSendData(uint16_t Data);
 #endif /* DAC_H_ */
